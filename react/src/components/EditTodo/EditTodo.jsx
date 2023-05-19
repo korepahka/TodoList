@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import axiosClient from '../../axios-client'
 
 
-function EditTodo({data, handleChange}) {
+function EditTodo({level, data, handleChange}) {
   const [show, setShow] = useState(false);
   const handleClose = () => {
     handleChange();
@@ -14,15 +14,14 @@ function EditTodo({data, handleChange}) {
   };
 
   const [errors, setErrors] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [user, setUsers] = useState([]);
+
 
 
   useEffect(() => {
     if (data) {
         setShow(true);   
         getUsers();
-
     }
   }, [data]);
 
@@ -32,7 +31,6 @@ function EditTodo({data, handleChange}) {
         setUsers(data.data)
       })
   }
-
 
   const saveTodo = task => {
     if (task.id) {
@@ -76,19 +74,20 @@ function EditTodo({data, handleChange}) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label >Заголовок</Form.Label>
               <div></div>
-              <Form.Control disabled={data?.admin === 0} required name="name" type="text" defaultValue={data?.name}/>
+              <Form.Control disabled={level === 1} required name="name" type="text" defaultValue={data?.name}/>
             </Form.Group>
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1">
               <Form.Label>Описание</Form.Label>
-              <Form.Control disabled={data?.admin === 0} required as="textarea" name="description" defaultValue={data?.description}/>
+              <Form.Control disabled={level === 1} required as="textarea" name="description" defaultValue={data?.description}/>
             </Form.Group>
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1">
               <Form.Label>Приоритет</Form.Label>
-                <Form.Select disabled={data?.admin === 0}  name="priority" defaultValue={data?.priority}>
+              <Form.Label>{level}</Form.Label>
+                <Form.Select disabled={level === 1}  name="priority" defaultValue={data?.priority}>
                       <option value="1">Высокий</option>
                       <option value="2">Средний</option>
                       <option value="3">Низкий</option>
@@ -105,7 +104,7 @@ function EditTodo({data, handleChange}) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Дата окончания</Form.Label>
-              <Form.Control disabled={data?.admin === 0} required name="date_ending" type="date"  defaultValue={data?.date_ending.split(' ')[0]}/>
+              <Form.Control disabled={level === 1} required name="date_ending" type="date"  defaultValue={data?.date_ending.split(' ')[0]}/>
             </Form.Group>
             <Form.Group>
                 <Form.Label>Создатель</Form.Label>
@@ -113,7 +112,7 @@ function EditTodo({data, handleChange}) {
             </Form.Group>
             <Form.Group>
                 <Form.Label>Ответсвенный</Form.Label>
-                <Form.Select disabled={data?.admin === 0} className="form-select" aria-label="Default select example" name="responsible_id"  defaultValue={data?.responsible_id}>
+                <Form.Select disabled={level === 1} className="form-select" aria-label="Default select example" name="responsible_id"  defaultValue={data?.responsible_id}>
                     {user.map(u => (
                       <option key={u.id} value={u.id}>{u.name}</option>
                     ))}

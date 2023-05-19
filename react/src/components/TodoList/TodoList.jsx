@@ -12,7 +12,9 @@ function TodoList() {
     const [dataId, setId] = useState();
     const [filtred, setFiltred] = useState(task);
     const [trigger, setTrigger] = useState(0);
-    const {user, token, setUser, setToken} = useStateContext()
+    const {user, token, setUser, setToken} = useStateContext();
+    const [level, setLevel] = useState(0);
+
 
     if (!token) {
         return <Navigate to="/login" />
@@ -24,7 +26,8 @@ function TodoList() {
         axiosClient.get('/user')
             .then(({data}) => {
                 setUser(data)
-                getTasks(data.admin)
+                getTasks(data.admin, data.head_user_id)
+                getUsers();
             })
 
     }, [])
@@ -33,8 +36,16 @@ function TodoList() {
         setFiltred(task);
     }, [task])
 
-    const getTasks = (admin) => {
-        if (admin === 1) {
+    const getUsers = () => {
+        axiosClient.get('/users')
+          .then(({ data }) => {
+            setLevel(data.data.length)
+          })
+      }
+
+    const getTasks = (admin, head_user_id) => {
+
+        if (admin === 1 || head_user_id === null) {
             axiosClient.get('/alltasks')
               .then(({ data }) => {
                 const aaa = data.map((d) => { 
@@ -118,6 +129,7 @@ function TodoList() {
       const parentHandleChange = () => {
         getTasks(user.admin);
         setId(null);
+        setLevel(null);
       };
 
       const setUpdate = (data) => {
@@ -166,7 +178,7 @@ function TodoList() {
                                             <td>{t.creator_name}</td>
                                             <td>{t.responsible_name}</td>
                                             <td>
-                                                <Button onClick={ev => onDeleteClick(t)} size="sm"><FontAwesomeIcon icon={ faTrash } /></Button>
+                                                <Button disabled={level === 1}  onClick={ev => onDeleteClick(t)} size="sm"><FontAwesomeIcon icon={ faTrash } /></Button>
                                                 <Button onClick={() => setUpdate(t) } size="sm"><FontAwesomeIcon icon={ faEdit } /></Button>
                                             </td>
                                         </tr>
@@ -178,7 +190,7 @@ function TodoList() {
 
             <NewTodo  handleChange={parentHandleChange} trigger={trigger}/>
 
-            <EditTodo handleChange={parentHandleChange} data={dataId}/>
+            <EditTodo handleChange={parentHandleChange} data={dataId} level={level}/>
            
         </>
     )

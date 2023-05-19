@@ -20,6 +20,13 @@ return new class extends Migration
             $table->integer('admin')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->unsignedBigInteger('head_user_id')->nullable();;
+            $table->index('head_user_id', 'task_head_user_idx');
+            $table->foreign('head_user_id', 'task_head_user_fk')->on('users')->references('id');
+
+
+
         });
     }
 

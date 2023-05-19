@@ -47,4 +47,9 @@ class User extends Authenticatable
                 $this->hasMany(Task ::class, 'responsible_id', 'id')];
 
     }
+
+    public function users() {
+        return [$this->belongsTo(User::class, 'head_user_id', 'id'),
+                $this->hasMany(User ::class, 'head_user_id', 'id')];
+    }
 }
