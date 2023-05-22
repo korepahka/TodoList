@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Task;
 use App\Models\User;
+use DateTime;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,8 +19,8 @@ class TaskSeeder extends Seeder
     {
         DB::table('tasks')->insert([
             'name' => 'React',
-            'description' => '',
-            'date_ending' => '2023-05-16 00:00:00',
+            'description' => 'React',
+            'date_ending' => new DateTime('today'),
             'status' => '1',
             'priority' => '1',
             'creator_id' => 2,
@@ -29,7 +30,7 @@ class TaskSeeder extends Seeder
 
         DB::table('tasks')->insert([
             'name' => '.NET',
-            'description' => '',
+            'description' => '.NET',
             'date_ending' => '2023-05-01 00:00:00',
             'status' => '2',
             'priority' => '2',
@@ -40,7 +41,7 @@ class TaskSeeder extends Seeder
 
         DB::table('tasks')->insert([
             'name' => 'JS',
-            'description' => '',
+            'description' => 'JS',
             'date_ending' => '2023-05-30 00:00:00',
             'status' => '2',
             'priority' => '1',
@@ -51,8 +52,8 @@ class TaskSeeder extends Seeder
 
         DB::table('tasks')->insert([
             'name' => 'PHP',
-            'description' => '',
-            'date_ending' => '2023-06-01 00:00:00',
+            'description' => 'PHP',
+            'date_ending' => '2023-05-26 00:00:00',
             'status' => '1',
             'priority' => '1',
             'creator_id' => 2,
@@ -62,7 +63,7 @@ class TaskSeeder extends Seeder
 
         DB::table('tasks')->insert([
             'name' => 'Java',
-            'description' => '',
+            'description' => 'Java',
             'date_ending' => '2023-05-20 00:00:00',
             'status' => '3',
             'priority' => '3',
@@ -73,7 +74,7 @@ class TaskSeeder extends Seeder
 
         DB::table('tasks')->insert([
             'name' => 'c#',
-            'description' => '',
+            'description' => 'c#',
             'date_ending' => '2023-06-01 00:00:00',
             'status' => '1',
             'priority' => '1',
@@ -84,8 +85,8 @@ class TaskSeeder extends Seeder
 
         DB::table('tasks')->insert([
             'name' => 'sql',
-            'description' => '',
-            'date_ending' => '2023-05-01 00:00:00',
+            'description' => 'sql',
+            'date_ending' => new DateTime('today'),
             'status' => '2',
             'priority' => '2',
             'creator_id' => 2,
@@ -95,18 +96,18 @@ class TaskSeeder extends Seeder
 
         DB::table('tasks')->insert([
             'name' => 'c++',
-            'description' => '',
-            'date_ending' => '2023-06-01 00:00:00',
+            'description' => 'c++',
+            'date_ending' => '2023-05-26 00:00:00',
             'status' => '1',
             'priority' => '1',
             'creator_id' => 4,
-            'responsible_id' => 5
+            'responsible_id' => 4
             
         ]);
 
         DB::table('tasks')->insert([
             'name' => 'laravel',
-            'description' => '',
+            'description' => 'laravel',
             'date_ending' => '2023-05-01 00:00:00',
             'status' => '1',
             'priority' => '1',
@@ -117,7 +118,7 @@ class TaskSeeder extends Seeder
 
         DB::table('tasks')->insert([
             'name' => 'laravel',
-            'description' => '',
+            'description' => 'laravel',
             'date_ending' => '2023-05-01 00:00:00',
             'status' => '1',
             'priority' => '1',
@@ -128,12 +129,12 @@ class TaskSeeder extends Seeder
 
         DB::table('tasks')->insert([
             'name' => 'laravel',
-            'description' => '',
+            'description' => 'laravel',
             'date_ending' => '2023-05-01 00:00:00',
             'status' => '1',
             'priority' => '1',
             'creator_id' => 3,
-            'responsible_id' => 6
+            'responsible_id' => 7
             
         ]);
     }

@@ -48,21 +48,21 @@ function TodoList() {
         if (admin === 1 || head_user_id === null) {
             axiosClient.get('/alltasks')
               .then(({ data }) => {
-                const aaa = data.map((d) => { 
-                    return Date.parse(d.date_ending) <= Tdate  && d.status < '3' ? {...d, color: 'table-danger'} :
+                const task = data.map((d) => { 
+                    return Date.parse(d.date_ending) < Tdate.setDate(Tdate.getDate() - 1) < '3' ? {...d, color: 'table-danger'} :
                     d.status == '3' ? {...d, color: 'table-success'} : {...d, color: 'table-secondary'}
                 })
-                setTask(aaa);    
+                setTask(task);    
               })
 
         } else {
         axiosClient.get('/tasks')
           .then(({ data }) => {
-            const aaa = data.map((d) => { 
-                return Date.parse(d.date_ending) <= Tdate  && d.status < '3' ? {...d, color: 'table-danger'} :
+            const task = data.map((d) => { 
+                    return Date.parse(d.date_ending) < Tdate.setDate(Tdate.getDate() - 1) && d.status < '3' ? {...d, color: 'table-danger'} :
                 d.status == '3' ? {...d, color: 'table-success'} : {...d, color: 'table-secondary'}
             })
-            setTask(aaa);
+            setTask(task);
           })
         }
       }
@@ -74,7 +74,7 @@ function TodoList() {
         let newTask;
 
         if (interval === 'today') {
-            newTask = task.filter(item => new Date(Date.parse(item.date_ending)).toLocaleDateString("ru-RU") === (new Date()).toLocaleDateString("ru-RU"));
+            newTask = task.filter(item => new Date(Date.parse(item.date_ending)).toLocaleDateString("ru-RU") === Tdate.toLocaleDateString("ru-RU"));
             setFiltred(newTask);
         } else if (interval === 'week') {
             newTask = task.filter(item => (Date.parse(item.date_ending) <= Wdate) && (Date.parse(item.date_ending) > Tdate.setDate(Tdate.getDate() - 1)));
@@ -129,7 +129,6 @@ function TodoList() {
       const parentHandleChange = () => {
         getTasks(user.admin);
         setId(null);
-        setLevel(null);
       };
 
       const setUpdate = (data) => {

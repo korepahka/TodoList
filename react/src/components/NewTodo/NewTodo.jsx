@@ -69,6 +69,7 @@ function NewTodo({trigger, handleChange}) {
               creator_id: user.id,
               responsible_id: e.target[6].value
             })
+            console.log(e.target[6].value)
           }
         
   return (

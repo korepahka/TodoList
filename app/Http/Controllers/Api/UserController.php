@@ -18,10 +18,6 @@ class UserController extends Controller
     public function index()
     {
 
-        // $first = DB::table('users')
-        //     ->where('id', 2)
-        //     ->select('users.id');
-
         return UserResource::collection(User::query()
             ->leftJoin('users as m', 'users.head_user_id', '=', 'm.id')
             ->select('users.*')
@@ -29,10 +25,6 @@ class UserController extends Controller
             ->orWhere('users.id', Auth::id())
             ->orderBy('users.name')
             ->get());
-
-    //   return UserResource::collection(User::query()->orderBy('id')->paginate(100));
-      // return UserResource::collection(User::all());
-
 
     }
 

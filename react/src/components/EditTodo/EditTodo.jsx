@@ -66,9 +66,6 @@ function EditTodo({level, data, handleChange}) {
   return (
     <>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Новая задача</Modal.Title>
-        </Modal.Header>
         <Modal.Body>
           <Form onSubmit={onFormSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

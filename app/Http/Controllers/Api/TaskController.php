@@ -56,7 +56,7 @@ class TaskController extends Controller
             'status' => $data['status'],
             'priority' => $data['priority'],
             'creator_id' => $data['creator_id'],
-            'responsible_id' => $data['creator_id'],
+            'responsible_id' => $data['responsible_id'],
 
         ]);
 

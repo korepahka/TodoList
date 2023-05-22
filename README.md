@@ -1,4 +1,31 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+параметры БД:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=33060
+DB_DATABASE=test
+DB_USERNAME=root
+DB_PASSWORD=notSecureChangeMe
+
+
+1. запустить миграцию: php artisan migrate:fresh
+2. запустить seeder с данными таблиц Users, Tasks: php artisan db:seed
+
+Все пользователи имеют пароль: password
+Список пользователей: head@test.com
+                      manager1@test.com
+                      manager2@test.com
+                      user1@test.com
+                      user2@test.com
+                      user3@test.com
+                      user4@test.com
+                      user5@test.com
+
+3. php artisan serve
+4. в новом терминале открыть репозиторий: cd react 
+5. npm run dev
+
+
+<!-- <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -63,4 +90,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
