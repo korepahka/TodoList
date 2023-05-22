@@ -15,7 +15,6 @@ function TodoList() {
     const {user, token, setUser, setToken} = useStateContext();
     const [level, setLevel] = useState(0);
 
-
     if (!token) {
         return <Navigate to="/login" />
     }
@@ -135,6 +134,14 @@ function TodoList() {
         setId(data);
         }
 
+        const sortData = (field) => {
+            const copyData = filtred.concat();
+            const sortData = copyData.sort((a, b) =>
+                {return a[field] > b[field] ? 1 : -1})
+            console.log(sortData)
+            setFiltred(sortData);
+        }
+
       return (
         <>
             <ButtonGroup aria-label="Basic example">
@@ -152,11 +159,11 @@ function TodoList() {
                     <tr>
                         <th scope="col">Заголовок</th>
                         <th scope="col">Описание</th>
-                        <th scope="col">Дата окончания</th>
+                        <th scope="col" onClick={() => {sortData('date_ending')}}>Дата окончания</th>
                         <th scope="col">Приоритет</th>
                         <th scope="col">Статус</th>
                         <th scope="col">Создатель</th>
-                        <th scope="col">Ответсвенный</th>
+                        <th scope="col" onClick={() => {sortData('responsible_name')}}>Ответсвенный</th>
                         <th scope="col"></th>
                         </tr>
                 </thead>
